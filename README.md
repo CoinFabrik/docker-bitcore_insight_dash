@@ -9,7 +9,7 @@ dockerized bitcore insight-api for dash - alpha version
 
 # build
 
-    git clone https://github.com/moocowmoo/docker-bitcore_insight_dash
+    git clone https://github.com/CoinFabrik/docker-bitcore_insight_dash.git --branch jaxx --single-branch
     cd docker-bitcore_insight_dash
     sudo docker build -t dashpay/bitcore_insight:1.1 .
     # go have a sandwich, takes 30+ minutes
