@@ -83,7 +83,7 @@ RUN cd $HOME \
     && npm install -g bitcore-node-dash \
     && bitcore-node-dash create dash-node -d $HOME/.bitcore/data \
     && cd dash-node \
-    && bitcore-node-dash install insight-api-dash
+    && bitcore-node-dash install https://github.com/dashpay/insight-api-dash#jaxx
 
 # build launch wrapper until I figure out how to source nvm envs through CMD
 RUN cd $HOME \
