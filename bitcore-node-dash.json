@@ -1,0 +1,19 @@
+{
+  "network": "livenet",
+  "port": 3001,
+  "services": [
+    "bitcoind",
+    "web"
+  ],
+  "servicesConfig": {
+    "bitcoind": {
+      "spawn": {
+        "datadir": "./data",
+        "exec": "/home/ubuntu/.npm-global/lib/node_modules/bitcore-node-dash/lib/scaffold/data/dashd"
+      }
+    },
+    "insight-api-dash": {
+      "disableRateLimiter": true
+    }
+  }
+}

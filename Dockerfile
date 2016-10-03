@@ -93,6 +93,9 @@ RUN cd $HOME \
     && echo "bitcore-node-dash start" >> launch_bitcore-node.sh \
     && chmod a+x launch_bitcore-node.sh
 
+# overwrite config file
+COPY ./bitcore-node-dash.json $HOME/dash-node/bitcore-node-dash.json
+
 EXPOSE 3001
 
 VOLUME ["$HOME/.bitcore"]
