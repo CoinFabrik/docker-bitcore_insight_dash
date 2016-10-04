@@ -9,8 +9,8 @@
   "servicesConfig": {
     "bitcoind": {
       "spawn": {
-        "datadir": "/home/ubuntu/.bitcore/data",
-        "exec": "/home/ubuntu/.bitcore/data/dashd"
+        "datadir": "/bitcore/.bitcore/data",
+        "exec": "/bitcore/.bitcore/data/dashd"
       }
     },
     "insight-api-dash": {
