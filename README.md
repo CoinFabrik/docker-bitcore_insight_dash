@@ -18,5 +18,5 @@ dockerized bitcore insight-api for dash - alpha version
 
 # start/stop
 
-    sudo docker start dash_insight
-    sudo docker stop dash_insight
+    docker start dash_insight
+    docker stop dash_insight
