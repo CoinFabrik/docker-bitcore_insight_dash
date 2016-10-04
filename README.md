@@ -14,7 +14,7 @@ dockerized bitcore insight-api for dash - alpha version
     docker build -t dashpay/bitcore_insight:1.1 .
     # go have a sandwich, takes 30+ minutes
     # verify build completed successfully, then
-    docker create -p 2052:3001 --name dash_insight dashpay/bitcore_insight:1.1
+    docker create -p 2052:3001 --name dash_insight --volume $HOME/dash-data:$HOME/.bitcore dashpay/bitcore_insight:1.1
 
 # start/stop
 
