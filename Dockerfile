@@ -85,6 +85,9 @@ RUN cd $HOME \
     && cd dash-node \
     && bitcore-node-dash install https://github.com/ferni/insight-api-dash#jaxx
 
+# overwrite config file
+COPY ./bitcore-node-dash.json $HOME/dash-node/bitcore-node-dash.json
+
 # build launch wrapper until I figure out how to source nvm envs through CMD
 RUN cd $HOME \
     && echo "#!/bin/bash" >> launch_bitcore-node.sh \
@@ -92,9 +95,6 @@ RUN cd $HOME \
     && echo "cd $HOME/dash-node" >> launch_bitcore-node.sh \
     && echo "bitcore-node-dash start" >> launch_bitcore-node.sh \
     && chmod a+x launch_bitcore-node.sh
-
-# overwrite config file
-COPY ./bitcore-node-dash.json $HOME/dash-node/bitcore-node-dash.json
 
 EXPOSE 3001
 
