@@ -65,8 +65,8 @@ USER bitcore
 ENV HOME /bitcore
 
 # install npm/node
-ENV NODE_VERSION 5.0.0
-ENV NVM_VERSION 0.31.2
+ENV NODE_VERSION 4.0.0
+ENV NVM_VERSION 0.32.0
 ENV NVM_DIR $HOME/.nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
     && source $NVM_DIR/nvm.sh \
@@ -74,27 +74,28 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.
     && nvm alias default $NODE_VERSION \
     && nvm use default
 
-# install bitcore-node
+# install bitcore-dash
 RUN cd $HOME \
     && source $NVM_DIR/nvm.sh \
-    && nvm use v5.0.0 \
+    && nvm use v4.0.0 \
     && mkdir -p $HOME/.bitcore/data \
     && ln -s /usr/bin/dashd $HOME/.bitcore/data \
-    && npm install -g bitcore-node-dash \
-    && bitcore-node-dash create dash-node -d $HOME/.bitcore/data \
-    && cd dash-node \
-    && bitcore-node-dash install insight-api-dash
+    && git clone https://github.com/dashpay/bitcore-dash -b nodownload \
+    && cd bitcore-dash \
+    && npm remove insight-api-dash --save \
+    && npm install dashpay/insight-api-dash#master_jaxx --save \
+    && npm install -g
 
 # build launch wrapper until I figure out how to source nvm envs through CMD
 RUN cd $HOME \
-    && echo "#!/bin/bash" >> launch_bitcore-node.sh \
-    && echo "source $NVM_DIR/nvm.sh" >> launch_bitcore-node.sh \
-    && echo "cd $HOME/dash-node" >> launch_bitcore-node.sh \
-    && echo "bitcore-node-dash start" >> launch_bitcore-node.sh \
-    && chmod a+x launch_bitcore-node.sh
+    && echo "#!/bin/bash" >> launch_bitcore-dash.sh \
+    && echo "source $NVM_DIR/nvm.sh" >> launch_bitcore-dash.sh \
+    && echo "cd $NVM_DIR/versions/node/v4.0.0/bin/" >> launch_bitcore-dash.sh \
+    && echo "bitcored" >> launch_bitcore-dash.sh \
+    && chmod a+x launch_bitcore-dash.sh
 
 EXPOSE 3001
 
 VOLUME ["$HOME/.bitcore"]
 
-CMD ["/bitcore/launch_bitcore-node.sh"]
+CMD ["/bitcore/launch_bitcore-dash.sh"]
